@@ -14,7 +14,7 @@ docker-yml() {
     - {{.}}{{end}}
   volumes: {{range .Config.Volumes}}
     - {{.}}{{end}}
-  labels: {{if len .Config.Labels gt 0}}{{range .Config.Labels}}
+  labels: {{if len(.Config.Labels) gt 0}}{{range .Config.Labels}}
     - {{.}}{{end}}{{end}}
 ' $1
 }
