@@ -6,7 +6,7 @@ docker-yml() {
   image: {{.Config.Image}}
   hostname: {{.Config.Hostname}}
   entrypoint: {{json .Config.Entrypoint}}
-  mem_limit: {{printf "%d" .HostConfig.Memory}}
+  mem_limit: {{printf "%v" .HostConfig.Memory}}
   cpu_shares: {{.HostConfig.CpuShares}}
   {{- if .NetworkSettings.Ports}}
   ports: {{range $p, $conf := .NetworkSettings.Ports}}
