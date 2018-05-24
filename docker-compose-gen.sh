@@ -11,5 +11,5 @@ docker-yml() {
 }
 
 for i in $( docker ps --format "{{.ID}}" ); do
-   docker-yml() $i
+   docker-yml $i
 done
