@@ -8,12 +8,15 @@ docker-yml() {
   entrypoint: {{json .Config.Entrypoint}}
   mem_limit: {{.HostConfig.Memory}}
   cpu_shares: {{.HostConfig.CpuShares}}
-  ports: {{range $p, $conf := .NetworkSettings.Ports}}
+  {{if .NetworkSettings.Ports}}ports: {{range $p, $conf := .NetworkSettings.Ports}}
     - {{(index $conf 0).HostIp}}:{{(index $conf 0).HostPort}}:{{$p}}{{end}}
-  environment: {{range .Config.Env}}
+  {{end}}
+  {{if .Config.Env}}environment: {{range .Config.Env}}
     - {{.}}{{end}}
-  volumes: {{range .Config.Volumes}}
+  {{end}}
+  {{if .Config.Volumes}}volumes: {{range .Config.Volumes}}
     - {{.}}{{end}}
+  {{end}}
   {{if .Config.Labels}}labels: {{range .Config.Labels}}
     - {{.}}{{end}}
   {{end}}
