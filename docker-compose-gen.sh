@@ -21,8 +21,8 @@ docker-yml() {
     - {{.}}{{end}}
   {{- end}}
   {{- if .Config.Labels}}
-  labels: {{range .Config.Labels}}
-    - {{.}}{{end}}
+  labels: {{range $n, $v := .Config.Labels}}
+    - {{$n}}: {{$v}}{{end}}
   {{- end}}
 ' $1
 }
