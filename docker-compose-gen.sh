@@ -7,6 +7,8 @@ docker-yml() {
   entrypoint: {{json .Config.Entrypoint}}
   environment: {{range .Config.Env}}
     - {{.}}{{end}}
+  volumes: {{range .Config.Volumes}}
+    - {{.}}{{end}}
 ' $1
 }
 
