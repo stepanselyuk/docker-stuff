@@ -14,10 +14,9 @@ docker-yml() {
   {{if .Config.Env}}environment: {{range .Config.Env}}
     - {{.}}{{end}}
   {{end}}
-  {{-if .Config.Volumes}}
-  volumes: {{range .Config.Volumes}}
+  {{if .Config.Volumes}}volumes: {{range .Config.Volumes}}
     - {{.}}{{end}}
-  {{end}}
+  {{- end}}
   {{if .Config.Labels}}labels: {{range .Config.Labels}}
     - {{.}}{{end}}
   {{end}}
