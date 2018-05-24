@@ -8,7 +8,7 @@ docker-yml() {
   entrypoint: {{json .Config.Entrypoint}}
   mem_limit: {{.HostConfig.Memory}}
   cpu_shares: {{.HostConfig.CpuShares}}
-  {{if .NetworkSettings.Ports}}ports: {{range $p, $conf := .NetworkSettings.Ports}}
+  {{- if .NetworkSettings.Ports}}ports: {{range $p, $conf := .NetworkSettings.Ports}}
     - {{(index $conf 0).HostIp}}:{{(index $conf 0).HostPort}}:{{$p}}{{end}}
   {{- end}}
   {{if .Config.Env}}environment: {{range .Config.Env}}
