@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker-yml() {
-  docker inspect -f $'
+  /usr/bin/docker inspect -f $'
 {{.Name}}
   image: {{.Config.Image}}
   hostname: {{.Config.Hostname}}
@@ -27,6 +27,6 @@ docker-yml() {
 ' $1
 }
 
-for i in $( docker ps --format "{{.ID}}" ); do
+for i in $( /usr/bin/docker ps --format "{{.ID}}" ); do
    docker-yml $i
 done
