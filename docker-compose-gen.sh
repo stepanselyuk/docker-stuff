@@ -1,9 +1,10 @@
 #!/bin/bash
 
 docker-yml() {
+
+echo "version: '2.3'"
+echo "services:"
   /usr/bin/docker inspect -f $'
-version: "2.3"
-services:
     {{.Name}}:
         image: {{.Config.Image}}
         container_name: {{.Name}}
