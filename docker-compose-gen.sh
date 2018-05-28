@@ -15,7 +15,7 @@ docker-yml() {
         {{- if .NetworkSettings.Ports}}
         ports: {{range $p, $conf := .NetworkSettings.Ports}}
         {{- if $conf}}
-        - {{(index $conf 0).HostIp}}:{{(index $conf 0).HostPort}}:{{$p}}{{- end}}{{end}}
+        - {{(index $conf 0).HostIp}}:{{(index $conf 0).HostPort}}:{{$p}}{{end}}{{end}}
         {{- end}}
         {{- if .Config.Env}}
         environment: {{range .Config.Env}}
