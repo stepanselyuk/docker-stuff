@@ -11,8 +11,7 @@ docker-yml() {
         hostname: {{.Config.Hostname}}
         entrypoint: {{json .Config.Entrypoint}}
         {{- if .Config.Cmd}}
-        command: {{range .Config.Cmd}}
-            - "{{.}}"{{end}}
+        command: {{range .Config.Cmd}}{{.}} {{end}}
         {{- end}}
         mem_limit: {{printf "%+v" .HostConfig.Memory}}
         cpu_shares: {{.HostConfig.CpuShares}}
