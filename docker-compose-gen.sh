@@ -21,9 +21,10 @@ docker-yml() {
         environment: {{range .Config.Env}}
             - {{.}}{{end}}
         {{- end}}
-        {{- if .Config.Volumes}}
-        volumes: {{range .Config.Volumes}}
-            - {{.}}{{end}}
+        {{- if .Mounts}}
+        volumes: {{range $k, $v := .Mounts}}
+        {{- if $k}}
+            - {{(index $v 0).Source}}:{{(index $v 0).Destination}}{{end}}{{end}}
         {{- end}}
         {{- if .Config.Labels}}
         labels: {{range $n, $v := .Config.Labels}}
