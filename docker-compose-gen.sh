@@ -5,7 +5,7 @@ echo "services:"
 
 docker-yml() {
   /usr/bin/docker inspect -f $'
-    {{.Name}}:
+    {{print .Name[1:]}}:
         image: {{.Config.Image}}
         container_name: {{.Name}}
         hostname: {{.Config.Hostname}}
