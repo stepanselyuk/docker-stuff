@@ -10,12 +10,12 @@ docker-yml() {
         container_name: {{.Name}}
         hostname: {{.Config.Hostname}}
         entrypoint: {{json .Config.Entrypoint}}
-        mem_limit: {{printf "%.f" .HostConfig.Memory}}
+        mem_limit: {{printf "%s" .HostConfig.Memory}}
         cpu_shares: {{.HostConfig.CpuShares}}
         {{- if .NetworkSettings.Ports}}
         ports: {{range $p, $conf := .NetworkSettings.Ports}}
         {{- if $conf}}
-            - "{{(index $conf 0).HostIp}}:{{(index $conf 0).HostPort}}:{{$p}}"{{end}}{{end}}
+            - "{{(index $conf 0).HostPort}}:{{$p}}"{{end}}{{end}}
         {{- end}}
         {{- if .Config.Env}}
         environment: {{range .Config.Env}}
