@@ -22,9 +22,9 @@ docker-yml() {
             - {{.}}{{end}}
         {{- end}}
         {{- if .Mounts}}
-        volumes: {{range $k, $v := .Mounts}}
-        {{- if $k}}
-            - {{(index $v 0).Source}}:{{(index $v 0).Destination}}{{end}}{{end}}
+        volumes: {{range $key, $value := .Mounts}}
+        {{- if $value}}
+            - {{$value.Source}}:{{$value.Destination}}{{end}}{{end}}
         {{- end}}
         {{- if .Config.Labels}}
         labels: {{range $n, $v := .Config.Labels}}
