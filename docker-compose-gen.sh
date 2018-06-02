@@ -10,6 +10,7 @@ docker-yml() {
         container_name: {{.Name}}
         hostname: {{.Config.Hostname}}
         entrypoint: {{json .Config.Entrypoint}}
+        {{- if .Config.Cmd}}
         command: {{range .Config.Cmd}}
             - {{.}}{{end}}
         {{- end}}
