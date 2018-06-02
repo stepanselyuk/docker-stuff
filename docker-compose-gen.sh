@@ -12,9 +12,9 @@ docker-yml() {
         entrypoint: {{json .Config.Entrypoint}}
         {{- if .Config.Cmd}}
         command: {{range .Config.Cmd}}
-            - {{.}}{{end}}
+            - "{{.}}"{{end}}
         {{- end}}
-        mem_limit: {{printf "%s" .HostConfig.Memory}}
+        mem_limit: {{printf "%+v" .HostConfig.Memory}}
         cpu_shares: {{.HostConfig.CpuShares}}
         {{- if .NetworkSettings.Ports}}
         ports: {{range $p, $conf := .NetworkSettings.Ports}}
