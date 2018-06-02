@@ -10,6 +10,9 @@ docker-yml() {
         container_name: {{.Name}}
         hostname: {{.Config.Hostname}}
         entrypoint: {{json .Config.Entrypoint}}
+        command: {{range .Config.Cmd}}
+            - {{.}}{{end}}
+        {{- end}}
         mem_limit: {{printf "%s" .HostConfig.Memory}}
         cpu_shares: {{.HostConfig.CpuShares}}
         {{- if .NetworkSettings.Ports}}
