@@ -17,8 +17,7 @@ docker-yml() {
         cpu_shares: {{.HostConfig.CpuShares}}
         {{- if .NetworkSettings.Ports}}
         ports: {{range $p, $conf := .NetworkSettings.Ports}}
-        {{- if $conf}}
-            - "{{$p}}"{{end}}{{end}}
+            - "{{$p}}"{{end}}
         {{- end}}
         {{- if .Config.Env}}
         environment: {{range .Config.Env}}
